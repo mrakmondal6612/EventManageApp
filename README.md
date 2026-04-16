@@ -38,7 +38,7 @@ Follow these steps to set up the project locally:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/NAKULMAK05/Event-Management-System.git
+   git clone https://github.com/mrakmondal6612/EventManageApp.git
    ```
 
 2. **Navigate to the Project Directory**
@@ -83,7 +83,8 @@ Follow these steps to set up the project locally:
 
 ### Deployed Application
 
-The backend is deployed on Render: https://eventmgtbackend.onrender.com
+- **Backend:** https://eventmgtbackend.onrender.com
+- **Frontend:** https://event-app-bay-tau.vercel.app
 
 ### Running Locally
 
@@ -155,5 +156,5 @@ Distributed under the MIT License. See the [LICENSE](LICENSE) file for more info
 
 For any questions or suggestions, please open an issue or contact the project maintainer.
 
-Project Repository: [AKEvent on GitHub](https://github.com/NAKULMAK05/Event-Management-System)
+Project Repository: [EventManageApp on GitHub](https://github.com/mrakmondal6612/EventManageApp)
 
