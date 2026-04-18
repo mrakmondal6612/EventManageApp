@@ -1,13 +1,13 @@
 {
   "name": "akevent-frontend",
-  "homepage": "https://NAKULMAK05.github.io/Event-Management-System",
+  "homepage": "https://event-app-bay-tau.vercel.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev:network": "vite --host",
-    "build": "vite build",
+    "dev": "node init && vite",
+    "dev:network": "node init && vite --host",
+    "build": "node init && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

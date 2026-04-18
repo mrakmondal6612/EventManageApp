@@ -10,7 +10,7 @@ const EventList = ({ events, onEventLiked, onEventCommented, onEventShared }) =>
   const handleLike = async (eventId) => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/event/${eventId}/like`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/event/${eventId}/like`,
         {},
         { headers: { "x-auth-token": localStorage.getItem("token") } }
       );
@@ -24,12 +24,12 @@ const EventList = ({ events, onEventLiked, onEventCommented, onEventShared }) =>
   const handleComment = async (eventId) => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/event/${eventId}/comment`,
+        `${import.meta.env.VITE_API_URL}/api/event/${eventId}/comment`,
         { text: comment },
         { headers: { "x-auth-token": localStorage.getItem("token") } }
       );
-      onEventCommented(eventId, res.data.comments); // Notify parent component
-      setComment(""); // Clear the comment input
+      onEventCommented(eventId, res.data.comments); 
+      setComment(""); 
     } catch (err) {
       console.error("Error adding comment:", err);
     }

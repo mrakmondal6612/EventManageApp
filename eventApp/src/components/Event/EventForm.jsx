@@ -10,7 +10,7 @@ const EventForm = ({ onEventCreated, onEventUpdate, eventToEdit }) => {
     date: "",
     time: "",
     schedule: "",
-    _id: "", // include _id in state so that update requests have it
+    _id: "",
   });
   const [thumbnailFile, setThumbnailFile] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -23,7 +23,6 @@ const EventForm = ({ onEventCreated, onEventUpdate, eventToEdit }) => {
         title: eventToEdit.title || "",
         description: eventToEdit.description || "",
         thumbnail: eventToEdit.thumbnail || "",
-        // Format the date as yyyy-mm-dd for input (if available)
         date: eventToEdit.date ? eventToEdit.date.substring(0, 10) : "",
         time: eventToEdit.time || "",
         schedule: eventToEdit.schedule || "",

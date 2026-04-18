@@ -29,7 +29,7 @@ const authMiddleware = async (req, res, next) => {
 
     // Set req.user and req.userId for compatibility
     req.user = user;
-    req.userId = user._id; // Ensure userId is set in the request
+    req.userId = user._id; 
 
     next();
   } catch (err) {

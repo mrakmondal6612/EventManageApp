@@ -79,16 +79,15 @@ const demoEvents = [
 
 async function loginAndSeedEvents() {
   try {
-    // Check if server is running
     console.log('Checking server connection...');
     try {
       await axios.get(`${API_BASE_URL}/api/event/getevent`);
     } catch (err) {
       if (err.code === 'ECONNREFUSED') {
-        console.error('❌ Cannot connect to server at', API_BASE_URL);
+        console.error(' Cannot connect to server at', API_BASE_URL);
         console.error('Please make sure:');
-        console.error('  1. MongoDB is running');
-        console.error('  2. Backend server is running (npm run dev)');
+        console.error('1. MongoDB is running');
+        console.error('2. Backend server is running (npm run dev)');
         process.exit(1);
       }
     }
@@ -121,18 +120,18 @@ async function loginAndSeedEvents() {
         console.log(`✓ Created event ${i + 1}/${demoEvents.length}: ${event.title}`);
       } catch (err) {
         console.error(`✗ Failed to create event ${i + 1}: ${event.title}`);
-        console.error('  Error:', err.response?.data?.message || err.message);
+        console.error('Error:', err.response?.data?.message || err.message);
       }
     }
     
-    console.log(`\n✅ Successfully created ${createdEvents.length} events!`);
+    console.log(`\n Successfully created ${createdEvents.length} events!`);
     console.log('\nEvent Summary:');
     createdEvents.forEach((event, idx) => {
       console.log(`${idx + 1}. ${event.title} - ${event.date}`);
     });
     
   } catch (error) {
-    console.error('❌ Error during login:');
+    console.error(' Error during login:');
     if (error.response) {
       console.error('Status:', error.response.status);
       console.error('Data:', error.response.data);

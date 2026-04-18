@@ -29,7 +29,8 @@ if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && proce
   });
   eventUpload = multer({
     storage: eventStorage,
-    limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+    // 10MB limit
+    limits: { fileSize: 10 * 1024 * 1024 }, 
   });
 } else {
   console.warn("Cloudinary not configured. Using memory storage - file upload disabled.");
@@ -97,7 +98,7 @@ const getEvents = async (req, res) => {
 
     res.json(events);
   } catch (err) {
-    console.error("❌ Error fetching events:", err.message);
+    console.error(" Error fetching events:", err.message);
     res.status(500).json({ msg: "Server error", error: err.message });
   }
 };
@@ -161,7 +162,7 @@ const likeEvent = async (req, res) => {
     await event.save();
     res.json(event);
   } catch (err) {
-    console.error("❌ Error liking event:", err.message);
+    console.error(" Error liking event:", err.message);
     res.status(500).json({ msg: "Server error", error: err.message });
   }
 };
@@ -188,7 +189,7 @@ const addComment = async (req, res) => {
 
     res.json(event);
   } catch (err) {
-    console.error("❌ Error adding comment:", err.message);
+    console.error(" Error adding comment:", err.message);
     res.status(500).json({ msg: "Server error", error: err.message });
   }
 };

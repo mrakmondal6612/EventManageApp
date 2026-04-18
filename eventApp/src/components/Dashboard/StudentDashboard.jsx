@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { Heart, MessageCircle, Share2, X, LogOut, Camera, UserPlus, UserCircle, CheckCircle, UserCheck } from "lucide-react";
+import { Heart, MessageCircle, Share2, X, LogOut, Camera, UserPlus, UserCircle, CheckCircle, UserCheck, XCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import image from './image.png'
@@ -23,7 +23,7 @@ const StudentDashboard = () => {
   const [profileLoading, setProfileLoading] = useState(false);
   const [addingUserId, setAddingUserId] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
-  const [filter, setFilter] = useState("all"); // all, enrolled
+  const [filter, setFilter] = useState("all"); 
   const profileDropdownRef = useRef(null);
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -74,18 +74,17 @@ const StudentDashboard = () => {
   // Fetch Suggestions
   const fetchSuggestions = async () => {
   try {
-    const res = await axios.get( `${API_BASE_URL}/api/user/suggestions`, { // Use relative path for Vercel
+    const res = await axios.get( `${API_BASE_URL}/api/user/suggestions`, { 
       headers: { "x-auth-token": localStorage.getItem("token") },
     });
     const currentUserId = localStorage.getItem("userId");
-    // Map photo to photoUrl to match frontend expectation
     const filteredUsers = res.data
       .filter(user => user._id !== currentUserId)
       .map(user => ({
         ...user,
-        photoUrl: user.photo?.replace('via.placeholder.com', 'placehold.co') || user.photo, // Replace via.placeholder.com with placehold.co
+        photoUrl: user.photo?.replace('via.placeholder.com', 'placehold.co') || user.photo, 
       }));
-    console.log("📌 Fetched suggestions:", filteredUsers); // Debug log
+    console.log("Fetched suggestions:", filteredUsers); 
     setSuggestions(filteredUsers);
   } catch (err) {
     console.error("Error fetching suggestions:", err);
@@ -399,7 +398,16 @@ const StudentDashboard = () => {
             </button>
 
             {isProfileOpen && (
-              <div className="absolute right-0 top-full mt-2 w-56 bg-white border border-gray-200 shadow-xl rounded-lg text-gray-800 z-[100]">
+              <div className="absolute right-0 top-full mt-2 w-56 bg-gray-200 border border-gray-200 shadow-xl rounded-lg text-gray-200 z-[100]">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                  <h3 className="font-semibold text-gray-800">Menu</h3>
+                  <button
+                    onClick={() => setIsProfileOpen(false)}
+                    className="text-gray-500 hover:text-gray-700 transition-all"
+                  >
+                    <XCircle size={18} />
+                  </button>
+                </div>
                 <button
                   onClick={toggleEditProfileModal}
                   className="block w-full px-4 py-2 hover:bg-gray-100 text-left transition-all"
