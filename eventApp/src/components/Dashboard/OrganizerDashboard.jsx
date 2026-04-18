@@ -19,7 +19,7 @@ const OrganizerDashboard = () => {
     firstName: "",
     lastName: "",
     email: "",
-    photoUrl: "", // Changed to photoUrl to match StudentDashboard
+    photoUrl: "",
   });
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const [eventToEdit, setEventToEdit] = useState(null);
@@ -369,43 +369,55 @@ const OrganizerDashboard = () => {
         </h1>
         <div className="flex items-center gap-2">
           <Notifications userId={localStorage.getItem("userId")} />
-          <button
-            onClick={() => setDropdownOpen(dropdownOpen === "profile" ? null : "profile")}
-            className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-full transition-all"
-          >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 overflow-hidden shadow-md">
-              {user.photoUrl ? (
-                <img src={user.photoUrl} alt="Profile" className="w-full h-full object-cover" />
-              ) : (
-                <span className="flex items-center justify-center h-full text-lg font-bold text-white">
-                  {user.firstName?.[0]}{user.lastName?.[0]}
-                </span>
-              )}
-            </div>
-            <ChevronDown size={20} className="text-gray-600" />
-          </button>
-          {dropdownOpen === "profile" && (
-            <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 shadow-xl rounded-lg text-gray-800 z-10">
-              <button
-                onClick={handleProfileClick}
-                className="block w-full px-4 py-2 hover:bg-gray-50 text-left transition-all text-purple-600 hover:text-purple-700 "
-              >
-                Profile
-              </button>
-              <button
-                className="block w-full px-4 py-2 hover:bg-gray-50 text-left transition-all text-purple-600 hover:text-purple-700"
-              >
-                Settings
-              </button>
-              <button
-                onClick={handleLogout}
-                className=" w-full px-4 py-2 hover:bg-gray-50 text-left transition-all flex items-center gap-2 text-red-600 hover:text-red-700"
-              >
-                Logout
-              </button>
-            </div>
-          )}
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(dropdownOpen === "profile" ? null : "profile")}
+              className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-full transition-all"
+            >
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 overflow-hidden shadow-md">
+                {user.photoUrl ? (
+                  <img src={user.photoUrl} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="flex items-center justify-center h-full text-lg font-bold text-white">
+                    {user.firstName?.[0]}{user.lastName?.[0]}
+                  </span>
+                )}
+              </div>
+              <ChevronDown size={20} className="text-gray-200" />
+            </button>
+            {dropdownOpen === "profile" && (
+              <div className="absolute right-0 top-full mt-2 w-56 bg-white border border-gray-200 shadow-xl rounded-lg text-gray-800 z-50">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                  <h3 className="font-semibold text-gray-800">Menu</h3>
+                  <button
+                    onClick={() => setDropdownOpen(null)}
+                    className="text-gray-500 hover:text-gray-700 transition-all"
+                  >
+                    <XCircle size={18} />
+                  </button>
+                </div>
+                <button
+                  onClick={handleProfileClick}
+                  className="block w-full px-4 py-2 hover:bg-gray-50 text-left transition-all text-purple-600 hover:text-purple-700"
+                >
+                  Profile
+                </button>
+                {/* <button
+                  className="block w-full px-4 py-2 hover:bg-gray-50 text-left transition-all text-purple-600 hover:text-purple-700"
+                >
+                  Settings
+                </button> */}
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-4 py-2 hover:bg-gray-50 text-left transition-all flex items-center gap-2 text-red-600 hover:text-red-700"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
+
       </header>
 
       {/* MAIN CONTENT */}

@@ -117,7 +117,7 @@ const createUpcomingEventNotifications = async () => {
             type: "event",
             eventId: event._id
           });
-          console.log(`✅ Created notification for user ${user.email}`);
+          console.log(` Created notification for user ${user.email}`);
         }
       }
     }

@@ -1,4 +1,4 @@
-import "./Auth.css"; // Keep this if you have additional custom styles
+import "./Auth.css"; 
 import { Mail, Key } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";

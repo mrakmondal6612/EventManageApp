@@ -6,25 +6,25 @@ export const updateLike = async (req, res) => {
   const { userId } = req.body;
   const eventId = req.params.eventId;
 
-  console.log("🔄 Received API Request:", { eventId, userId });
+  console.log("Received API Request:", { eventId, userId });
 
   if (!userId || !eventId) {
-    console.log("❌ Missing userId or eventId");
+    console.log(" Missing userId or eventId");
     return res.status(400).json({ success: false, msg: "User ID and Event ID are required" });
   }
 
   try {
     const userObjectId = new mongoose.Types.ObjectId(userId);
     
-    // 🔍 Check if event exists
+    // Check if event exists
     const event = await Event.findById(eventId);
-    console.log("🔍 Found Event in DB:", event);
+    console.log("Found Event in DB:", event);
     if (!event) {
-      console.log("❌ Event Not Found in DB");
+      console.log(" Event Not Found in DB");
       return res.status(404).json({ success: false, msg: "Event not found" });
     }
 
-    console.log("✅ Before Update Likes:", event.likes);
+    console.log(" Before Update Likes:", event.likes);
 
     // Check if user already liked the event
     const index = event.likes.findIndex(id => id.equals(userObjectId));
@@ -36,25 +36,25 @@ export const updateLike = async (req, res) => {
       update = { $pull: { likes: userObjectId } };
     }
 
-    console.log("🔄 Updating MongoDB...");
+    console.log("Updating MongoDB...");
     const updatedEvent = await Event.updateOne({ _id: eventId }, update);
-    console.log("✅ MongoDB Update Result:", updatedEvent);
+    console.log(" MongoDB Update Result:", updatedEvent);
 
     // Fetch updated event data from DB
     const finalEvent = await Event.findById(eventId);
-    console.log("🔄 Final DB Check Likes:", finalEvent.likes);
+    console.log("Final DB Check Likes:", finalEvent.likes);
 
     return res.status(200).json({ success: true, likes: finalEvent.likes });
 
   } catch (err) {
-    console.error("❌ Server Error:", err);
+    console.error(" Server Error:", err);
     return res.status(500).json({ success: false, msg: "Server error during like update" });
   }
 };
 
 // Update comment count
 export const updateComment = async (req, res) => {
-  const userId = req.body.userId || req.user?._id; // Extract from body or JWT
+  const userId = req.body.userId || req.user?._id;
   const eventId = req.params.eventId;
   const { text } = req.body;
 
@@ -77,9 +77,9 @@ export const updateComment = async (req, res) => {
       {
         $push: {
           comments: {
-            userId: userObjectId, // Use correct field name from schema
+            userId: userObjectId, 
             text,
-            date: new Date(), // Explicitly set date (optional, since default exists)
+            date: new Date(), 
           },
         },
       },

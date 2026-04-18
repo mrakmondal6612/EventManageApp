@@ -1,6 +1,6 @@
 {
   "name": "akevent-frontend",
-  "homepage": "https://NAKULMAK05.github.io/Event-Management-System",
+  "homepage": "https://event-app-bay-tau.vercel.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",

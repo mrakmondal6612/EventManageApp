@@ -24,7 +24,7 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 
-// 🔹 Get User Details
+//  Get User Details
 const getUserDetails = async (req, res) => {
   try {
     const userId = req.user?._id;
@@ -56,7 +56,7 @@ const getUserDetails = async (req, res) => {
 };
 
 
-// 🔹 Update User Profile (Text Fields Only)
+//  Update User Profile (Text Fields Only)
 const updateUserDetails = async (req, res) => {
   try {
     const userId = req.user?._id;
@@ -83,7 +83,7 @@ const updateUserDetails = async (req, res) => {
   }
 };
 
-// 🔹 Update Profile Photo (Using Cloudinary)
+//  Update Profile Photo (Using Cloudinary)
 const updateProfilePhoto = async (req, res) => {
   try {
     const userId = req.user?._id;
@@ -119,7 +119,7 @@ const updateProfilePhoto = async (req, res) => {
   }
 };
 
-// 🔹 Fetch User Suggestions (Full Name & Profile Photo)
+//  Fetch User Suggestions (Full Name & Profile Photo)
 const fetchUserSuggestions = async (req, res) => {
   try {
     const currentUser = await User.findById(req.user.id).select("connections");
@@ -135,12 +135,12 @@ const fetchUserSuggestions = async (req, res) => {
 
     res.json(users);
   } catch (err) {
-    console.error("❌ Error fetching suggestions:", err.message);
+    console.error(" Error fetching suggestions:", err.message);
     res.status(500).json({ msg: "Server error", error: err.message });
   }
 };
 
-// 🔹 Add User to Connections
+//  Add User to Connections
 const addUserConnection = async (req, res) => {
   try {
     const currentUserId = req.user.id;
@@ -169,7 +169,7 @@ const addUserConnection = async (req, res) => {
 
     res.status(200).json({ message: "User added to connections successfully" });
   } catch (err) {
-    console.error("❌ Error adding user connection:", err.message);
+    console.error(" Error adding user connection:", err.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

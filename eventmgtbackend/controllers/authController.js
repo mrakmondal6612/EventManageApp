@@ -75,7 +75,7 @@ const loginUser = async (req, res) => {
     res.json({
       success: true,
       token,
-      user: { _id: user._id, type: user.type }, // Ensure user ID is included here
+      user: { _id: user._id, type: user.type },
     });
   } catch (err) {
     console.error("Server Error:", err);
