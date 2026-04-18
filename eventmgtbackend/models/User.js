@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 // Generate JWT Token
 userSchema.methods.generateAuthToken = function () {
   try {
-    console.log('JWT_SECRET:', process.env.JWT_SECRET); // Log to check if the secret is loaded
+    console.log('JWT_SECRET:', process.env.JWT_SECRET); 
     return jwt.sign(
       { _id: this._id, email: this.email, type: this.type },
       process.env.JWT_SECRET,

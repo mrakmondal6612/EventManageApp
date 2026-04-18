@@ -45,7 +45,7 @@ export default function SignupPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Use if your backend requires cookies
+        credentials: "include",
         body: JSON.stringify(data),
       });
 
@@ -61,7 +61,7 @@ export default function SignupPage() {
       if (res.token) {
         localStorage.setItem("token", res.token);
         setSuccess("Account created successfully! Redirecting...");
-        setTimeout(() => navigate("/"), 2000); // Replace with your redirect path
+        setTimeout(() => navigate("/"), 2000); 
       } else {
         setError(res.msg || "Signup failed. Please try again.");
       }

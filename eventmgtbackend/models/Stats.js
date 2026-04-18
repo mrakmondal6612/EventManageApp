@@ -9,7 +9,7 @@ const statsSchema = new mongoose.Schema({
   likes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Stores user IDs who liked the event
+      ref: "User",
     },
   ],
   comments: [
